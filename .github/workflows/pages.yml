@@ -1,1 +1,17 @@
+name: Deploy Daily Intelligence to GitHub Pages
+on: {push: {branches: [main]}, workflow_dispatch: {}}
+permissions: {contents: read, pages: write, id-token: write}
+concurrency: {group: pages, cancel-in-progress: true}
+jobs:
+  deploy:
+    environment: {name: github-pages}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Prepare static site
+        run: mkdir dist && cp index.html styles.css app.js manifest.webmanifest sw.js icon.svg dist/ && cp -r data dist/data && sed -i 's#href="/#href="./#g; s#src="/#src="./#g' dist/index.html
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with: {path: dist}
+      - uses: actions/deploy-pages@v4
 
