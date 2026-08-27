@@ -1,0 +1,1 @@
+import {createHash} from 'node:crypto';export function articleFingerprint(article){return createHash('sha256').update([article.originalTitle,article.sourceUrl,article.publishedAt,article.rawContent].map(x=>x||'').join('|')).digest('hex')}
