@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: daily-intelligence
+    runtime: node
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: APP_TIMEZONE
+        value: Asia/Kuala_Lumpur
+      - key: DAILY_UPDATE_TIME
+        value: '06:00'
+      - key: DATABASE_URL
+        sync: false
+      - key: OPENAI_API_KEY
+        sync: false

@@ -1,0 +1,1 @@
+{"name":"daily-intelligence","private":true,"type":"module","scripts":{"start":"node --env-file-if-exists=.env server.mjs","dev":"node --watch --env-file-if-exists=.env server.mjs","test":"node --test","build":"node --check server.mjs && node --check app.js && node --check scripts/generate-daily.mjs"},"engines":{"node":">=20"}}
